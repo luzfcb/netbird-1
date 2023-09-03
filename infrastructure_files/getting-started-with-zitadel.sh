@@ -458,6 +458,8 @@ initEnvironment() {
   mkdir -p machinekey
   chmod 777 machinekey
 
+  mkdir -p netbird_caddy_data
+
   init_crdb
 
   echo -e "\nStarting Zidatel IDP for user management\n\n"
@@ -649,7 +651,7 @@ services:
       - '80:80'
       - '8080:8080'
     volumes:
-      - netbird_caddy_data:/data
+      - ./netbird_caddy_data:/data
       - ./Caddyfile:/etc/caddy/Caddyfile
   #UI dashboard
   dashboard:
@@ -723,7 +725,6 @@ services:
 
 volumes:
   netbird_management:
-  netbird_caddy_data:
   netbird_crdb_data:
   netbird_crdb_certs:
   netbird_zitadel_certs:
